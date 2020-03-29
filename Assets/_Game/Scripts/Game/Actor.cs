@@ -3,9 +3,12 @@ using Tofunaut.SharpUnity;
 
 namespace Tofunaut.Deeepr.Game
 {
-    public class Actor : SharpGameObject
+    public class Actor : SharpGameObject, ICollider
     {
+        public CollisionInfo CollisionInfo => _collisionInfo;
+
         private ActorInput _input;
+        private CollisionInfo _collisionInfo;
 
         public Actor(string name) : base(name)
         {
