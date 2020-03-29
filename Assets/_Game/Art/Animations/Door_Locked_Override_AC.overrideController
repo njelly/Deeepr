@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Door_Locked_Override_AC
+  m_Controller: {fileID: 9100000, guid: 27c685cd1a7dbf34cb3d18702309f163, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 51abe74d78df40645af0d944f622c431, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3d5a0b2e1d20e2d4fb31e5ba94b8bedf, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b9b78fa48b0899a4292aa5364faedf1e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0a15e123ed7e79248a58259ad14279d5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 617bbc0d2b4332d40a2577f92a0303f6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c7b483708ce0d0641adc9da7390b5877, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f17928e7f3ab2dd4d98f64944b23cf1d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b2888f7bd96706e4e965c2769d6914d9, type: 2}
