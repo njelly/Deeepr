@@ -1,4 +1,5 @@
 using System;
+using Tofunaut.Animation;
 using Tofunaut.Core;
 using Tofunaut.SharpUnity;
 using Tofunaut.UnityUtils;
@@ -9,16 +10,21 @@ namespace Tofunaut.Deeepr.Game
     public class Actor : SharpGameObject, ICollider
     {
         public CollisionInfo CollisionInfo => _config.collisionInfo;
+        public const float MoveHysterisisPeriod = 0.1f;
 
         private ActorInput _input;
         private readonly ActorConfig _config;
         private readonly GameManager _gameManager;
         private GameObject _instantiatedView;
         private IntVector2 _interactOffset;
+        private Vector3 _targetPosition;
+        private IntVector2 _prevInputDirection;
+        private TofuAnimation _inputDirectionHysterisisTimer;
 
         public Actor(GameManager gameManager, ActorConfig config) : base("Actor")
         {
             _gameManager = gameManager;
+            _config = config;
             _interactOffset = IntVector2.Right;
         }
 
@@ -40,6 +46,10 @@ namespace Tofunaut.Deeepr.Game
         public void ReceiveInput(ActorInput input)
         {
             _input = input;
+
+            _interactOffset = input.direction;
+
+            Debug.Log(_interactOffset);
         }
     }
 

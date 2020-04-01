@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844107aedf77d604b8c0d801dc1b11b5, type: 3}
+  m_Name: ColorPallet
+  m_EditorClassIdentifier: 
+  _black: {r: 0.13333334, g: 0.13725491, b: 0.13725491, a: 1}
+  _darkGray: {r: 0.2627451, g: 0.2627451, b: 0.30980393, a: 1}
+  _gray: {r: 0.49411768, g: 0.49411768, b: 0.56078434, a: 1}
+  _lightGray: {r: 0.7607844, g: 0.7607844, b: 0.8196079, a: 1}
+  _darkGreen: {r: 0.23529413, g: 0.6392157, b: 0.43921572, a: 1}
+  _lightGreen: {r: 0.3647059, g: 0.8705883, b: 0.5294118, a: 1}
+  _red: {r: 0.9215687, g: 0.3372549, b: 0.29411766, a: 1}
+  _orange: {r: 0.9490197, g: 0.6509804, b: 0.36862746, a: 1}
+  _yellow: {r: 1, g: 0.8941177, b: 0.47058827, a: 1}
+  _darkBrown: {r: 0.5372549, g: 0.24313727, b: 0.35686275, a: 1}
+  _brown: {r: 0.7294118, g: 0.3803922, b: 0.3372549, a: 1}

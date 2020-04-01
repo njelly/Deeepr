@@ -164,4 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb321a7eb95fb9d4d8ee514a3d739430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _colorPallet: {fileID: 11400000, guid: 0c857eb3bba244344a4823e771a3daf9, type: 2}
   _skipStartMenu: 1

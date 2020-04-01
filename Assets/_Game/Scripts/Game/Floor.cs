@@ -29,7 +29,7 @@ namespace Tofunaut.Deeepr.Game
 
         public static Floor TestFloor()
         {
-            // this will be flipped vertically
+            // this will be rotated 90 counter clockwise
             int[,] tileData = { {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
                             { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
                             { 1, 0, 1, 0, 0, 0, 0, 0, 0, 1 },

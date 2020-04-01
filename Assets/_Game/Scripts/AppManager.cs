@@ -13,11 +13,14 @@ namespace Tofunaut.Deeepr
             public const string InGame = "in_game";
         }
 
+        [SerializeField] private ColorPallet _colorPallet;
+
         [Header("Debug")]
         [SerializeField] private bool _skipStartMenu;
 
         public static Version AppVersion { get; private set; }
         public static AssetManager AssetManager { get; private set; }
+        public static ColorPallet ColorPallet => _instance._colorPallet;
 
         protected override bool SetDontDestroyOnLoad => true;
 
