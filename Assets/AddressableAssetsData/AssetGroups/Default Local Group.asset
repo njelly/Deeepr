@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: PlayerView
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 83bc5128799553847a95a253c4be7feb
+    m_Address: PlayerActorConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a02ff3f7dd418b04ba149e3e6b2585b1
+    m_Address: WallView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7f2a98d6a86b0c84c89a9606cf7e617f, type: 2}
   m_SchemaSet:

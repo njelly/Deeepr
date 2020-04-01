@@ -16,20 +16,19 @@ namespace Tofunaut.Deeepr
         [Header("Debug")]
         [SerializeField] private bool _skipStartMenu;
 
-        public Version AppVersion => _appVersion;
+        public static Version AppVersion { get; private set; }
+        public static AssetManager AssetManager { get; private set; }
 
         protected override bool SetDontDestroyOnLoad => true;
 
         private TofuStateMachine _stateMachine;
-        private AssetManager _assetManager;
-        private Version _appVersion;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _appVersion = new Version($"{Application.version}.{BuildNumberUtil.ReadBuildNumber()}");
-            Debug.Log($"Deeepr {_appVersion} (c) 2020 Tofunaut");
+            AppVersion = new Version($"{Application.version}.{BuildNumberUtil.ReadBuildNumber()}");
+            Debug.Log($"Deeepr {AppVersion} (c) 2020 Tofunaut");
 
             _stateMachine = new TofuStateMachine();
             _stateMachine.Register(State.Initialize, Initalize_Enter, Initalize_Update, null);
@@ -46,19 +45,19 @@ namespace Tofunaut.Deeepr
 
         private void Initalize_Enter()
         {
-            _assetManager = new AssetManager();
+            AssetManager = new AssetManager();
 
             // TODO: load necessary assets like fonts and things here
         }
 
         private void Initalize_Update(float deltaTime)
         {
-            if (_assetManager.Ready)
+            if (AssetManager.Ready)
             {
 #if UNITY_EDITOR
                 if (_skipStartMenu)
                 {
-                    _stateMachine.ChangeState(State.Initialize);
+                    _stateMachine.ChangeState(State.InGame);
                 }
                 else
                 {

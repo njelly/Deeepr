@@ -11,16 +11,36 @@ namespace Tofunaut.Deeepr.Game
         private Tile[,] _tiles;
         private List<Actor> _actors;
 
-        public Floor(Tile[,] tiles, int level) : base($"Floor_{level}")
+        public Floor(int[,] tileData, int level) : base($"Floor_{level}")
         {
             this.level = level;
-            _tiles = tiles;
             _actors = new List<Actor>();
+
+            for(int y = 0; y < tileData.GetLength(1); y++)
+            {
+                for(int x = 0; x < tileData.GetLength(0); x++)
+                {
+                    AddChild(Tile.Create(this, new Core.IntVector2(x, y), (Tile.EType)tileData[x, y]));
+                }
+            }
         }
 
-        protected override void Build()
-        {
+        protected override void Build() { }
 
+        public static Floor TestFloor()
+        {
+            // this will be flipped vertically
+            int[,] tileData = { {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                            { 1, 0, 1, 0, 0, 0, 0, 0, 0, 1 },
+                            { 1, 0, 0, 0, 0, 0, 0, 1, 0, 1 },
+                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },};
+
+            return new Floor(tileData, 0);
         }
     }
 }

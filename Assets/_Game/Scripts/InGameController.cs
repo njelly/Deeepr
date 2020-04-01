@@ -1,6 +1,7 @@
 using Tofunaut.Core;
 using Tofunaut.UnityUtils;
 using Tofunaut.Deeepr.Game;
+using UnityEngine;
 
 namespace Tofunaut.Deeepr
 {
@@ -8,17 +9,18 @@ namespace Tofunaut.Deeepr
     {
         private static class State
         {
-            public static string Loading;
-            public static string InGame;
+            public const string Loading = "loading";
+            public const string InGame = "in_game";
         }
 
         private TofuStateMachine _stateMachine;
-        private Game.Game _game;
+        private GameManager _game;
 
         private void Awake()
         {
-            _stateMachine.Register(State.Loading, null, null, null);
-            _stateMachine.Register(State.InGame, null, null, null);
+            _stateMachine = new TofuStateMachine();
+            _stateMachine.Register(State.Loading, Loading_Enter, Loading_Update, null);
+            _stateMachine.Register(State.InGame, InGame_Enter, null, null);
         }
 
         private void OnEnable()
@@ -26,10 +28,27 @@ namespace Tofunaut.Deeepr
             _stateMachine.ChangeState(State.Loading);
         }
 
+        private void Update()
+        {
+            _stateMachine.Update(Time.deltaTime);
+        }
+
         private void Loading_Enter()
         {
-            // TODO load from save data / configuration?
-            _game = new Game.Game();
+            AppManager.AssetManager.Load<ActorConfigAsset>("PlayerActorConfig");
+        }
+
+        private void Loading_Update(float deltaTime)
+        {
+            if(AppManager.AssetManager.Ready)
+            {
+                _stateMachine.ChangeState(State.InGame);
+            }
+        }
+
+        private void InGame_Enter()
+        {
+            _game = gameObject.RequireComponent<GameManager>();
         }
     }
 }
