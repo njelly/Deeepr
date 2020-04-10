@@ -25,9 +25,10 @@ namespace Tofunaut.Deeepr.Game
         /// <summary>
         /// Returns true if this collision info will collide with some other collision info
         /// </summary>
-        public bool DoesCollideWith(CollisionInfo other)
+        public bool DoesCollideWith(CollisionInfo other) => DoesCollideWith(other.solidLayer);
+        public bool DoesCollideWith(Collision.ELayer solidLayer)
         {
-            return (collsionLayer & other.solidLayer) != 0;
+            return (collsionLayer & solidLayer) != 0;
         }
     }
 

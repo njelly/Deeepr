@@ -9,6 +9,8 @@ namespace Tofunaut.Deeepr.Game
     {
         public static GameCamera Camera { get; private set; }
 
+        public Floor CurrentFloor => _floors[_currentLevel];
+
         private List<Actor> _actors;
         private List<Floor> _floors;
         private Actor _playerActor;

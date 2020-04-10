@@ -21,6 +21,16 @@ namespace Tofunaut.Deeepr
             Brown,
         }
 
+        public enum EAlpha
+        {
+            Clear,
+            Faint,
+            Half,
+            AlmostSolid,
+            Solid,
+        }
+
+        [Header("Color")]
         [SerializeField] private Color _black;
         [SerializeField] private Color _darkGray;
         [SerializeField] private Color _gray;
@@ -33,36 +43,73 @@ namespace Tofunaut.Deeepr
         [SerializeField] private Color _darkBrown;
         [SerializeField] private Color _brown;
 
-        public Color Get(EColor color)
+        [Header("Alpha")]
+        [SerializeField] private float _faint;
+        [SerializeField] private float _almostSolid;
+
+        public Color Get(EColor color, EAlpha alpha = EAlpha.Solid)
         {
+            Color toReturn;
             switch (color)
             {
                 case EColor.Black:
-                    return _black;
+                    toReturn = _black;
+                    break;
                 case EColor.DarkGray:
-                    return _darkGray;
+                    toReturn = _darkGray;
+                    break;
                 case EColor.Gray:
-                    return _gray;
+                    toReturn = _gray;
+                    break;
                 case EColor.LightGray:
-                    return _lightGray;
+                    toReturn = _lightGray;
+                    break;
                 case EColor.DarkGreen:
-                    return _darkGreen;
+                    toReturn = _darkGreen;
+                    break;
                 case EColor.LightGreen:
-                    return _lightGreen;
+                    toReturn = _lightGreen;
+                    break;
                 case EColor.Red:
-                    return _red;
+                    toReturn = _red;
+                    break;
                 case EColor.Orange:
-                    return _orange;
+                    toReturn = _orange;
+                    break;
                 case EColor.Yellow:
-                    return _yellow;
+                    toReturn = _yellow;
+                    break;
                 case EColor.DarkBrown:
-                    return _darkBrown;
+                    toReturn = _darkBrown;
+                    break;
                 case EColor.Brown:
-                    return _brown;
+                    toReturn = _brown;
+                    break;
                 default:
                     Debug.LogError($"color not implemented: {color}");
                     return Color.clear;
             }
+
+            switch (alpha)
+            {
+                case EAlpha.Clear:
+                    toReturn.a = 0f;
+                    break;
+                case EAlpha.Faint:
+                    toReturn.a = _faint;
+                    break;
+                case EAlpha.Half:
+                    toReturn.a = 0.5f;
+                    break;
+                case EAlpha.AlmostSolid:
+                    toReturn.a = _almostSolid;
+                    break;
+                case EAlpha.Solid:
+                    toReturn.a = 1f;
+                    break;
+            }
+
+            return toReturn;
         }
     }
 }

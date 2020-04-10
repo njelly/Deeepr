@@ -25,23 +25,25 @@ namespace Tofunaut.Deeepr.Game
             _input.actionButton.wasDown = _input.actionButton;
             _input.actionButton.timeDown = Input.GetKey(KeyCode.Space) ? _input.actionButton.timeDown + Time.deltaTime : 0f;
 
-            _input.direction = IntVector2.Zero;
-
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
-                _input.direction = IntVector2.Up;
+                _input.direction.SetDirection(IntVector2.Up, Time.deltaTime);
             }
             else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
-                _input.direction = IntVector2.Down;
+                _input.direction.SetDirection(IntVector2.Down, Time.deltaTime);
             }
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                _input.direction = IntVector2.Left;
+                _input.direction.SetDirection(IntVector2.Left, Time.deltaTime);
             }
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                _input.direction = IntVector2.Right;
+                _input.direction.SetDirection(IntVector2.Right, Time.deltaTime);
+            }
+            else
+            {
+                _input.direction.SetDirection(IntVector2.Zero, Time.deltaTime);
             }
         }
     }

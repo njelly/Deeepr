@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Tofunaut.Core;
 using Tofunaut.SharpUnity;
 using Tofunaut.UnityUtils;
@@ -20,6 +21,7 @@ namespace Tofunaut.Deeepr.Game
 
         protected virtual string ViewPath => string.Empty;
         protected Collision.ELayer _defaultSolidLayer;
+        protected HashSet<Actor> _occupants;
 
         private GameObject _instantiatedView;
 
@@ -31,6 +33,8 @@ namespace Tofunaut.Deeepr.Game
             _defaultSolidLayer = Collision.ELayer.None;
 
             LocalPosition = coord.ToUnityVector3_XY();
+
+            _occupants = new HashSet<Actor>();
         }
 
         protected override void Build()
@@ -60,6 +64,42 @@ namespace Tofunaut.Deeepr.Game
                     Debug.LogError($"unhandled tile type {type}, returning null");
                     return null;
             }
+        }
+
+        public bool TrySetOccupant(Actor actor)
+        {
+            bool canOccupy = false;
+
+            canOccupy |= !actor.CollisionInfo.DoesCollideWith(SolidLayer);
+            foreach(Actor occupant in _occupants)
+            {
+                canOccupy |= !actor.CollisionInfo.DoesCollideWith(occupant.CollisionInfo);
+            }
+
+            if(canOccupy)
+            {
+                _occupants.Add(actor);
+            }
+
+            return canOccupy;
+        }
+
+        public bool CanSetOccupant(Actor actor)
+        {
+            bool canOccupy = false;
+
+            canOccupy |= !actor.CollisionInfo.DoesCollideWith(SolidLayer);
+            foreach (Actor occupant in _occupants)
+            {
+                canOccupy |= !actor.CollisionInfo.DoesCollideWith(occupant.CollisionInfo);
+            }
+
+            return canOccupy;
+        }
+
+        public void RemoveOccupant(Actor occupant)
+        {
+            _occupants.Remove(occupant);
         }
     }
 
