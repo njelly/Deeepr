@@ -12,18 +12,22 @@ namespace Tofunaut.Deeepr.Game
         {
             Empty,
             Wall,
+            LadderUp,
+            LadderDown,
+            Door,
         }
 
         public readonly IntVector2 coord;
         public readonly Floor floor;
 
         public virtual Collision.ELayer SolidLayer => _defaultSolidLayer;
+        public IReadOnlyCollection<Actor> Occupants => new List<Actor>(_occupants).AsReadOnly();
 
         protected virtual string ViewPath => string.Empty;
         protected Collision.ELayer _defaultSolidLayer;
         protected HashSet<Actor> _occupants;
 
-        private GameObject _instantiatedView;
+        private TileView _instantiatedView;
 
         protected Tile(Floor floor, IntVector2 coord) : base($"Tile {coord}")
         {
@@ -45,7 +49,8 @@ namespace Tofunaut.Deeepr.Game
                 {
                     if(succesful)
                     {
-                        _instantiatedView = Object.Instantiate(payload);
+                        _instantiatedView = Object.Instantiate(payload).GetComponent<TileView>();
+                        _instantiatedView.Initialize(this);
                         _instantiatedView.transform.SetParent(Transform, false);
                     }
                 });
@@ -60,6 +65,12 @@ namespace Tofunaut.Deeepr.Game
                     return new Tile(floor, coord);
                 case EType.Wall:
                     return new WallTile(floor, coord);
+                case EType.LadderUp:
+                    return new LadderUpTile(floor, coord);
+                case EType.LadderDown:
+                    return new LadderDownTile(floor, coord);
+                case EType.Door:
+                    return new DoorTile(floor, coord);
                 default:
                     Debug.LogError($"unhandled tile type {type}, returning null");
                     return null;
@@ -101,6 +112,8 @@ namespace Tofunaut.Deeepr.Game
         {
             _occupants.Remove(occupant);
         }
+
+        public virtual void InteractWith(Actor interactor) { }
     }
 
     public class WallTile : Tile
@@ -110,6 +123,44 @@ namespace Tofunaut.Deeepr.Game
         public WallTile(Floor floor, IntVector2 coord) : base(floor, coord) 
         {
             _defaultSolidLayer = Collision.ELayer.All;
+        }
+    }
+
+    public class LadderUpTile : Tile
+    {
+        protected override string ViewPath => "LadderUpView";
+
+        public LadderUpTile(Floor floor, IntVector2 coord) : base(floor, coord)
+        {
+            _defaultSolidLayer = Collision.ELayer.Ground;
+        }
+    }
+    public class LadderDownTile : Tile
+    {
+        protected override string ViewPath => "LadderDownView";
+
+        public LadderDownTile(Floor floor, IntVector2 coord) : base(floor, coord)
+        {
+            _defaultSolidLayer = Collision.ELayer.Ground;
+        }
+    }
+    public class DoorTile : Tile
+    {
+        protected override string ViewPath => "DoorView";
+
+        public bool IsClosed { get; private set; }
+
+        public override Collision.ELayer SolidLayer => IsClosed ? _defaultSolidLayer : Collision.ELayer.Ground;
+
+        public DoorTile(Floor floor, IntVector2 coord) : base(floor, coord)
+        {
+            _defaultSolidLayer = Collision.ELayer.All;
+            IsClosed = true;
+        }
+
+        public override void InteractWith(Actor interactor)
+        {
+            IsClosed = !IsClosed;
         }
     }
 }

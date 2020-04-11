@@ -17,12 +17,24 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 0fe4f8870a6189d4ebf920216a5fa28c
   m_SerializeEntries:
+  - m_GUID: 0a967bafe12059a43b8077b8bb5e084c
+    m_Address: DoorView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: 699c399476316b44691e113d921af228
     m_Address: PlayerView
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 83bc5128799553847a95a253c4be7feb
     m_Address: PlayerActorConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9313072c5979d9b48b7906dc5e89bef0
+    m_Address: LadderUpView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9a14e01e2abfd894fbf01dbe64df1b57
+    m_Address: LadderDownView
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a02ff3f7dd418b04ba149e3e6b2585b1

@@ -19,6 +19,7 @@ namespace Tofunaut.Deeepr
             Yellow,
             DarkBrown,
             Brown,
+            Blue,
         }
 
         public enum EAlpha
@@ -42,6 +43,7 @@ namespace Tofunaut.Deeepr
         [SerializeField] private Color _yellow;
         [SerializeField] private Color _darkBrown;
         [SerializeField] private Color _brown;
+        [SerializeField] private Color _blue;
 
         [Header("Alpha")]
         [SerializeField] private float _faint;
@@ -84,6 +86,9 @@ namespace Tofunaut.Deeepr
                     break;
                 case EColor.Brown:
                     toReturn = _brown;
+                    break;
+                case EColor.Blue:
+                    toReturn = _blue;
                     break;
                 default:
                     Debug.LogError($"color not implemented: {color}");

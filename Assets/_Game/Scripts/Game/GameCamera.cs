@@ -51,5 +51,17 @@ namespace Tofunaut.Deeepr.Game
                 })
                 .Play();
         }
+
+        public void SnapToTarget()
+        {
+            if (!_target)
+            {
+                return;
+            }
+
+            _targetPos = new Vector3(_target.transform.position.x, _target.transform.position.y, -10f);
+            Transform.position = _targetPos;
+            SetTarget(_target);
+        }
     }
 }

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6917620529366014459}
-  - component: {fileID: 7160825182237374364}
+  - component: {fileID: 8995222446591544920}
   - component: {fileID: 6917620529366014458}
   m_Layer: 0
-  m_Name: WallView
+  m_Name: LadderUpView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7160825182237374364
+--- !u!114 &8995222446591544920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 6917620529366014458}
-  _color: 2
+  _color: 3
 --- !u!212 &6917620529366014458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1405813744795751201, guid: a357100fe40374b3889303e8a33c749b,
+  m_Sprite: {fileID: 6669020994630665394, guid: a357100fe40374b3889303e8a33c749b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

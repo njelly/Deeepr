@@ -26,6 +26,7 @@ namespace Tofunaut.Deeepr.Game
         public const float MoveHysterisisPeriod = 0.1f;
         public EFacing Facing { get; private set; }
         public Tile CurrentTile { get; private set; }
+        public Floor CurrentFloor { get; private set; }
 
         private ActorInput _input;
         private readonly ActorConfig _config;
@@ -57,17 +58,6 @@ namespace Tofunaut.Deeepr.Game
             }
         }
 
-        protected override void PostRender()
-        {
-            base.PostRender();
-
-            _targetCoord = Transform.position.ToIntVector2_XY();
-            if(!TryOccupyCoord(_targetCoord))
-            {
-                Debug.LogError($"Actor could not occupy the tile it spawned on {_targetCoord}");
-            }
-        }
-
         public void ReceiveInput(ActorInput input)
         {
             _input = input;
@@ -88,7 +78,7 @@ namespace Tofunaut.Deeepr.Game
 
                 if (_input.direction.timeDown > DirectionInputHysteresisPeriod)
                 {
-                    if (_moveAnimation == null && TryOccupyCoord(_targetCoord + _input.direction))
+                    if (_moveAnimation == null && TryOccupyCoord(CurrentFloor, _targetCoord + _input.direction))
                     {
                         Vector3 velocity = _input.direction.Direction.ToUnityVector3_XY() * _config.moveSpeed;
                         _targetCoord += _input.direction;
@@ -103,7 +93,7 @@ namespace Tofunaut.Deeepr.Game
                                     {
                                         Transform.position = _targetCoord.ToUnityVector3_XY();
 
-                                        if (!TryOccupyCoord(_targetCoord + _input.direction))
+                                        if (!TryOccupyCoord(CurrentFloor, _targetCoord + _input.direction))
                                         {
                                             return true;
                                         }
@@ -148,6 +138,24 @@ namespace Tofunaut.Deeepr.Game
 
         private void BeginInteraction()
         {
+            Tile facingTile = CurrentFloor.GetTile(CurrentTile.coord + InteractOffset);
+
+            IEnumerable<Actor> occupants = facingTile.Occupants;
+            Actor otherActor = null;
+            foreach(Actor occupant in occupants)
+            {
+                otherActor = occupant;
+            }
+            if(otherActor != null)
+            {
+                // todo: interact with the actor
+            }
+            else
+            {
+                // interact with the tile if there are no actors
+                facingTile.InteractWith(this);
+            }
+
             InteractionBegan?.Invoke(this, EventArgs.Empty);
         }
 
@@ -156,9 +164,10 @@ namespace Tofunaut.Deeepr.Game
             InteractionEnded?.Invoke(this, EventArgs.Empty);
         }
 
-        public bool TryOccupyCoord(IntVector2 coord)
+        public bool TryOccupyCoord(Floor floor, IntVector2 coord) => TryOccupyCoord(floor, coord, false);
+        public bool TryOccupyCoord(Floor floor, IntVector2 coord, bool teleport)
         {
-            Tile tile = _gameManager.CurrentFloor.GetTile(coord);
+            Tile tile = floor.GetTile(coord);
             if(tile == null)
             {
                 return false;
@@ -167,15 +176,26 @@ namespace Tofunaut.Deeepr.Game
             bool toReturn = tile.TrySetOccupant(this);
             if(toReturn)
             {
+                if (CurrentTile != null)
+                {
+                    CurrentTile.RemoveOccupant(this);
+                }
+
+                if (teleport)
+                {
+                    Transform.position = coord.ToUnityVector3_XY();
+                    _targetCoord = coord;
+                }
                 CurrentTile = tile;
+                CurrentFloor = floor;
             }
 
             return toReturn;
         }
 
-        public bool CanOccupyCoord(IntVector2 coord)
+        public bool CanOccupyCoord(Floor floor, IntVector2 coord)
         {
-            Tile tile = _gameManager.CurrentFloor.GetTile(coord);
+            Tile tile = floor.GetTile(coord);
             if (tile == null)
             {
                 return false;
