@@ -24,8 +24,6 @@ namespace Tofunaut.Deeepr.Game
         private const int FloorMaxWidth = 80;
         private const int FloorMinHeight = 50;
         private const int FloorMaxHeight = 80;
-        private const int RoomMinBufferSize = 6;
-        private const int RoomMaxBufferSize = 30;
 
         public delegate void ResultDelegate(Floor result);
 
@@ -73,6 +71,9 @@ namespace Tofunaut.Deeepr.Game
                 .Play();
         }
 
+        private const int DefaultGen_RoomMinBufferSize = 8;
+        private const int DefaultGen_RoomMaxBufferSize = 24;
+        private const int DefaultGen_CooridorErosionSteps = 10;
         private struct RoomGenData
         {
             public IntVector2Rect rect;
@@ -87,8 +88,8 @@ namespace Tofunaut.Deeepr.Game
 
             IntVector2Rect CreateRoom()
             {
-                int width = random.Next(RoomMinBufferSize, RoomMaxBufferSize);
-                int height = random.Next(RoomMinBufferSize, RoomMaxBufferSize);
+                int width = random.Next(DefaultGen_RoomMinBufferSize, DefaultGen_RoomMaxBufferSize);
+                int height = random.Next(DefaultGen_RoomMinBufferSize, DefaultGen_RoomMaxBufferSize);
 
                 IntVector2 min = new IntVector2(random.Next(1, floorSize.x - width - 1), random.Next(1, floorSize.y - height - 1));
                 IntVector2 max = min + new IntVector2(width, height);
@@ -102,16 +103,16 @@ namespace Tofunaut.Deeepr.Game
                 IntVector2Rect room = CreateRoom();
 
                 bool doesOverlap = false;
-                foreach(IntVector2Rect existingRoom in rooms)
+                foreach (IntVector2Rect existingRoom in rooms)
                 {
-                    if(existingRoom.Overlaps(room))
+                    if (existingRoom.Overlaps(room))
                     {
                         doesOverlap = true;
                         break;
                     }
                 }
 
-                if(doesOverlap)
+                if (doesOverlap)
                 {
                     continue;
                 }
@@ -168,17 +169,17 @@ namespace Tofunaut.Deeepr.Game
 
                     // remove nearby potential door coords
                     List<int> toRemove = new List<int>();
-                    for(int j = 0; j < potentialDoorCoords.Count; j++)
+                    for (int j = 0; j < potentialDoorCoords.Count; j++)
                     {
-                        if((potentialDoorCoords[j] - doorCoord).ManhattanDistance <= 3)
+                        if ((potentialDoorCoords[j] - doorCoord).ManhattanDistance <= 3)
                         {
                             toRemove.Add(j);
                         }
                     }
                     List<IntVector2> remainingDoorCoords = new List<IntVector2>();
-                    for(int k = 0; k < potentialDoorCoords.Count; k++)
+                    for (int k = 0; k < potentialDoorCoords.Count; k++)
                     {
-                        if(!toRemove.Contains(k))
+                        if (!toRemove.Contains(k))
                         {
                             remainingDoorCoords.Add(potentialDoorCoords[k]);
                         }
@@ -193,31 +194,31 @@ namespace Tofunaut.Deeepr.Game
                 roomGenDatas.Add(roomGenData);
             }
 
-            // now place the LadderDown tile
-            List<IntVector2> potentialLadderCoords = new List<IntVector2>();
+            // now place the LadderUp tile
+            List<IntVector2> usefulCoords = new List<IntVector2>();
             for (int x = 0; x < tileGenTypes.GetLength(0); x++)
             {
                 for (int y = 0; y < tileGenTypes.GetLength(1); y++)
                 {
-                    ETileGenType type = (ETileGenType)tileGenTypes[x, y];
-                    if(type != ETileGenType.RoomFloor)
+                    if (!IsCoordType(tileGenTypes, x, y, ETileGenType.RoomFloor))
                     {
                         continue;
                     }
 
-                    potentialLadderCoords.Add(new IntVector2(x, y));
+                    usefulCoords.Add(new IntVector2(x, y));
                 }
             }
-            IntVector2 ladderUpCoord = potentialLadderCoords[random.Next(0, potentialLadderCoords.Count)];
+            IntVector2 ladderUpCoord = usefulCoords[random.Next(0, usefulCoords.Count)];
             tileGenTypes[ladderUpCoord.x, ladderUpCoord.y] = (int)ETileGenType.LadderUp;
 
-            // now place the LadderUp tile
-            potentialLadderCoords.RemoveAll((IntVector2 x) => { return (x - ladderUpCoord).ManhattanDistance < 3; });
-            IntVector2 ladderDownCoord = potentialLadderCoords[random.Next(0, potentialLadderCoords.Count)];
+            // now place the LadderDown tile
+            usefulCoords.RemoveAll((IntVector2 x) => { return (x - ladderUpCoord).ManhattanDistance < 3; });
+            IntVector2 ladderDownCoord = usefulCoords[random.Next(0, usefulCoords.Count)];
 
             tileGenTypes[ladderDownCoord.x, ladderDownCoord.y] = (int)ETileGenType.LadderDown;
 
             // build all the cooridors
+            usefulCoords.Clear(); // now use usefulCoords for cooridor tiles
             for (int i = 0; i < roomGenDatas.Count - 1; i++)
             {
                 RoomGenData fromRoom = roomGenDatas[i];
@@ -236,11 +237,7 @@ namespace Tofunaut.Deeepr.Game
                         return false;
                     }
 
-                    ETileGenType type = (ETileGenType)tileGenTypes[coord.x, coord.y];
-                    if (type == ETileGenType.RoomWall
-                        || type == ETileGenType.RoomFloor
-                        || type == ETileGenType.LadderUp
-                        || type == ETileGenType.LadderUp)
+                    if (IsCoordType(tileGenTypes, coord, ETileGenType.RoomWall, ETileGenType.RoomFloor, ETileGenType.LadderUp, ETileGenType.LadderUp))
                     {
                         return false;
                     }
@@ -251,7 +248,7 @@ namespace Tofunaut.Deeepr.Game
                 void TryMarkAsCorridorFloor(IntVector2 coord)
                 {
                     ETileGenType currentTile = (ETileGenType)tileGenTypes[coord.x, coord.y];
-                    if (currentTile == ETileGenType.Void || currentTile == ETileGenType.RoomWall || currentTile == ETileGenType.CorridorWall)
+                    if (IsCoordType(tileGenTypes, coord, ETileGenType.Void, ETileGenType.RoomWall, ETileGenType.CorridorWall))
                     {
                         tileGenTypes[coord.x, coord.y] = (int)ETileGenType.CorridorFloor;
                     }
@@ -268,10 +265,10 @@ namespace Tofunaut.Deeepr.Game
 
                 void TryMarkAsCorridorWall(IntVector2 coord)
                 {
-                    ETileGenType currentTile = (ETileGenType)tileGenTypes[coord.x, coord.y];
-                    if (currentTile == ETileGenType.Void)
+                    if (IsCoordType(tileGenTypes, coord, ETileGenType.Void))
                     {
                         tileGenTypes[coord.x, coord.y] = (int)ETileGenType.CorridorWall;
+                        usefulCoords.Add(coord);
                     }
                 }
 
@@ -281,7 +278,99 @@ namespace Tofunaut.Deeepr.Game
                 }
             }
 
-            // TODO: remove invalid doors
+            // erode cooridor walls to provide more walking space
+            List<IntVector2> wallsToRemove = new List<IntVector2>();
+            for (int i = 0; i < DefaultGen_CooridorErosionSteps; i++)
+            {
+                // remove corridor walls when adjacent to 2 non-collinear cooridor walls, and mark them as corridor floors
+                foreach(IntVector2 coord in usefulCoords)
+                {
+                    IntVector2 up = coord + IntVector2.Up;
+                    IntVector2 down = coord + IntVector2.Down;
+                    IntVector2 left = coord + IntVector2.Left;
+                    IntVector2 right = coord + IntVector2.Right;
+
+                    // never remove corridor walls that are ajacent to void tiles
+                    if (IsCoordType(tileGenTypes, up, ETileGenType.Void))
+                    {
+                        continue;
+                    }
+                    if (IsCoordType(tileGenTypes, down, ETileGenType.Void))
+                    {
+                        continue;
+                    }
+                    if (IsCoordType(tileGenTypes, left, ETileGenType.Void))
+                    {
+                        continue;
+                    }
+                    if (IsCoordType(tileGenTypes, right, ETileGenType.Void))
+                    {
+                        continue;
+                    }
+
+                    bool upIsCorridorWall = IsCoordType(tileGenTypes, up, ETileGenType.CorridorWall);
+                    bool downIsCorridorWall = IsCoordType(tileGenTypes, down, ETileGenType.CorridorWall);
+                    bool leftIsCorridorWall = IsCoordType(tileGenTypes, left, ETileGenType.CorridorWall);
+                    bool rightIsCorridorWall = IsCoordType(tileGenTypes, right, ETileGenType.CorridorWall);
+
+                    bool doErode = false;
+                    doErode |= upIsCorridorWall && (rightIsCorridorWall || leftIsCorridorWall);
+                    doErode |= downIsCorridorWall && (rightIsCorridorWall || leftIsCorridorWall);
+
+                    if(!doErode)
+                    {
+                        int numSurroundingCorridorFloors = 0;
+                        numSurroundingCorridorFloors += IsCoordType(tileGenTypes, up, ETileGenType.CorridorFloor) ? 1 : 0;
+                        numSurroundingCorridorFloors += IsCoordType(tileGenTypes, down, ETileGenType.CorridorFloor) ? 1 : 0;
+                        numSurroundingCorridorFloors += IsCoordType(tileGenTypes, left, ETileGenType.CorridorFloor) ? 1 : 0;
+                        numSurroundingCorridorFloors += IsCoordType(tileGenTypes, right, ETileGenType.CorridorFloor) ? 1 : 0;
+
+                        doErode |= numSurroundingCorridorFloors >= 3;
+                    }
+
+                    if(doErode)
+                    {
+                        tileGenTypes[coord.x, coord.y] = (int)ETileGenType.CorridorFloor;
+                        wallsToRemove.Add(coord);
+                    }
+                }
+
+                usefulCoords.RemoveAll((IntVector2 coord) => wallsToRemove.Contains(coord));
+                wallsToRemove.Clear();
+            }
+
+            // remove invalid doors
+            foreach (RoomGenData roomGenData in roomGenDatas)
+            {
+                foreach (IntVector2 coord in roomGenData.doorTiles)
+                {
+                    IntVector2 up = coord + IntVector2.Up;
+                    IntVector2 down = coord + IntVector2.Down;
+                    IntVector2 left = coord + IntVector2.Left;
+                    IntVector2 right = coord + IntVector2.Right;
+
+                    // the door is valid if it opens to a corridor floor
+                    if (IsCoordType(tileGenTypes, up, ETileGenType.CorridorFloor))
+                    {
+                        continue;
+                    }
+                    if (IsCoordType(tileGenTypes, down, ETileGenType.CorridorFloor))
+                    {
+                        continue;
+                    }
+                    if (IsCoordType(tileGenTypes, left, ETileGenType.CorridorFloor))
+                    {
+                        continue;
+                    }
+                    if (IsCoordType(tileGenTypes, right, ETileGenType.CorridorFloor))
+                    {
+                        continue;
+                    }
+
+                    tileGenTypes[coord.x, coord.y] = (int)ETileGenType.RoomWall;
+                }
+            }
+
 
             // convert from gen types to actual tile types
             for (int x = 0; x < tileGenTypes.GetLength(0); x++)
@@ -302,6 +391,7 @@ namespace Tofunaut.Deeepr.Game
         {
             switch (genType)
             {
+                case ETileGenType.Void:
                 case ETileGenType.RoomWall:
                 case ETileGenType.CorridorWall:
                     return Tile.EType.Wall;
@@ -314,6 +404,26 @@ namespace Tofunaut.Deeepr.Game
                 default:
                     return Tile.EType.Empty;
             }
+        }
+
+        private static bool IsCoordType(int[,] tileGenTypes, IntVector2 coord, params ETileGenType[] types) => IsCoordType(tileGenTypes, coord.x, coord.y, types);
+        private static bool IsCoordType(int[,] tileGenTypes, int x, int y, params ETileGenType[] types)
+        {
+            if (x < 0 || x >= tileGenTypes.GetLength(0) || y < 0 || y >= tileGenTypes.GetLength(1))
+            {
+                return false;
+            }
+
+            ETileGenType type = (ETileGenType)tileGenTypes[x, y];
+            foreach(ETileGenType compareTo in types)
+            {
+                if(type == compareTo)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

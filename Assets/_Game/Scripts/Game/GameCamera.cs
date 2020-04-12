@@ -16,7 +16,7 @@ namespace Tofunaut.Deeepr.Game
         public GameCamera() : base("GameCamera")
         {
             _cameraOrthographic = true;
-            _cameraOrthographicSize = 10;
+            _cameraOrthographicSize = 5;
             _cameraBackgroundColor = AppManager.ColorPallet.Get(ColorPallet.EColor.Black);
 
             LocalPosition = new Vector3(0, 0, -10);
