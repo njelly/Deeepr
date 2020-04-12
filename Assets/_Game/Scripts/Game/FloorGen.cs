@@ -20,10 +20,11 @@ namespace Tofunaut.Deeepr.Game
             LadderDown,
         }
 
-        private const int FloorMinWidth = 50;
-        private const int FloorMaxWidth = 80;
-        private const int FloorMinHeight = 50;
-        private const int FloorMaxHeight = 80;
+        private const int BedrockBuffer = 10;
+        private const int FloorMinWidth = 50 + BedrockBuffer;
+        private const int FloorMaxWidth = 80 + BedrockBuffer;
+        private const int FloorMinHeight = 50 + BedrockBuffer;
+        private const int FloorMaxHeight = 80 + BedrockBuffer;
 
         public delegate void ResultDelegate(Floor result);
 
@@ -72,7 +73,7 @@ namespace Tofunaut.Deeepr.Game
         }
 
         private const int DefaultGen_RoomMinBufferSize = 8;
-        private const int DefaultGen_RoomMaxBufferSize = 24;
+        private const int DefaultGen_RoomMaxBufferSize = 18;
         private const int DefaultGen_CooridorErosionSteps = 10;
         private struct RoomGenData
         {
@@ -91,7 +92,7 @@ namespace Tofunaut.Deeepr.Game
                 int width = random.Next(DefaultGen_RoomMinBufferSize, DefaultGen_RoomMaxBufferSize);
                 int height = random.Next(DefaultGen_RoomMinBufferSize, DefaultGen_RoomMaxBufferSize);
 
-                IntVector2 min = new IntVector2(random.Next(1, floorSize.x - width - 1), random.Next(1, floorSize.y - height - 1));
+                IntVector2 min = new IntVector2(random.Next(BedrockBuffer, floorSize.x - width - BedrockBuffer), random.Next(BedrockBuffer, floorSize.y - height - BedrockBuffer));
                 IntVector2 max = min + new IntVector2(width, height);
 
                 return new IntVector2Rect(min, max);
@@ -160,7 +161,7 @@ namespace Tofunaut.Deeepr.Game
                 }
 
                 // place doors
-                int numDoors = random.Next(2, 4); // 2, or 3 doors
+                int numDoors = 2; // random.Next(2, 3); // 2, or 3 doors
                 List<IntVector2> doorTiles = new List<IntVector2>();
                 for (int i = 0; i < numDoors && potentialDoorCoords.Count > 0; i++)
                 {
