@@ -21,9 +21,9 @@ namespace Tofunaut.Deeepr.Game
         }
 
         private const int FloorMinWidth = 50;
-        private const int FloorMaxWidth = 100;
+        private const int FloorMaxWidth = 80;
         private const int FloorMinHeight = 50;
-        private const int FloorMaxHeight = 100;
+        private const int FloorMaxHeight = 80;
         private const int RoomMinBufferSize = 6;
         private const int RoomMaxBufferSize = 30;
 
@@ -73,6 +73,11 @@ namespace Tofunaut.Deeepr.Game
                 .Play();
         }
 
+        private struct RoomGenData
+        {
+            public IntVector2Rect rect;
+            public IntVector2[] doorTiles;
+        }
         private static Floor DefaultGenAlgorithm(Random random, int level, IntVector2 floorSize)
         {
             List<IntVector2Rect> rooms = new List<IntVector2Rect>();
@@ -114,8 +119,12 @@ namespace Tofunaut.Deeepr.Game
                 rooms.Add(room);
             }
 
+            List<RoomGenData> roomGenDatas = new List<RoomGenData>();
             foreach (IntVector2Rect room in rooms)
             {
+                RoomGenData roomGenData = new RoomGenData();
+                roomGenData.rect = room;
+
                 List<IntVector2> potentialDoorCoords = new List<IntVector2>();
                 for (int x = 1; x <= room.Width - 1; x++)
                 {
@@ -151,7 +160,8 @@ namespace Tofunaut.Deeepr.Game
 
                 // place doors
                 int numDoors = random.Next(2, 4); // 2, or 3 doors
-                for(int i = 0; i < numDoors && potentialDoorCoords.Count > 0; i++)
+                List<IntVector2> doorTiles = new List<IntVector2>();
+                for (int i = 0; i < numDoors && potentialDoorCoords.Count > 0; i++)
                 {
                     int index = random.Next(0, potentialDoorCoords.Count);
                     IntVector2 doorCoord = potentialDoorCoords[index];
@@ -175,10 +185,13 @@ namespace Tofunaut.Deeepr.Game
                     }
                     potentialDoorCoords = new List<IntVector2>(remainingDoorCoords);
 
+                    doorTiles.Add(doorCoord);
                     tileGenTypes[doorCoord.x, doorCoord.y] = (int)ETileGenType.Door;
                 }
-            }
 
+                roomGenData.doorTiles = doorTiles.ToArray();
+                roomGenDatas.Add(roomGenData);
+            }
 
             // now place the LadderDown tile
             List<IntVector2> potentialLadderCoords = new List<IntVector2>();
@@ -198,10 +211,77 @@ namespace Tofunaut.Deeepr.Game
             IntVector2 ladderUpCoord = potentialLadderCoords[random.Next(0, potentialLadderCoords.Count)];
             tileGenTypes[ladderUpCoord.x, ladderUpCoord.y] = (int)ETileGenType.LadderUp;
 
+            // now place the LadderUp tile
             potentialLadderCoords.RemoveAll((IntVector2 x) => { return (x - ladderUpCoord).ManhattanDistance < 3; });
             IntVector2 ladderDownCoord = potentialLadderCoords[random.Next(0, potentialLadderCoords.Count)];
 
             tileGenTypes[ladderDownCoord.x, ladderDownCoord.y] = (int)ETileGenType.LadderDown;
+
+            // build all the cooridors
+            for (int i = 0; i < roomGenDatas.Count - 1; i++)
+            {
+                RoomGenData fromRoom = roomGenDatas[i];
+                RoomGenData toRoom = roomGenDatas[i + 1];
+
+                IntVector2 fromDoorTile = fromRoom.doorTiles[random.Next(0, fromRoom.doorTiles.Length)];
+                IntVector2 toDoorTile = toRoom.doorTiles[random.Next(0, toRoom.doorTiles.Length)];
+
+                IntVector2[] path = IntVector2PathFinder.GetPath(fromDoorTile, toDoorTile, (IntVector2 coord) =>
+                {
+                    // can travel delegate
+
+                    if (coord.x < 1 || coord.x > tileGenTypes.GetLength(0) - 2 || coord.y < 1 || coord.y > tileGenTypes.GetLength(1) - 2)
+                    {
+                        // don't path along the perimeter of floor
+                        return false;
+                    }
+
+                    ETileGenType type = (ETileGenType)tileGenTypes[coord.x, coord.y];
+                    if (type == ETileGenType.RoomWall
+                        || type == ETileGenType.RoomFloor
+                        || type == ETileGenType.LadderUp
+                        || type == ETileGenType.LadderUp)
+                    {
+                        return false;
+                    }
+
+                    return true;
+                }, 9999);
+
+                void TryMarkAsCorridorFloor(IntVector2 coord)
+                {
+                    ETileGenType currentTile = (ETileGenType)tileGenTypes[coord.x, coord.y];
+                    if (currentTile == ETileGenType.Void || currentTile == ETileGenType.RoomWall || currentTile == ETileGenType.CorridorWall)
+                    {
+                        tileGenTypes[coord.x, coord.y] = (int)ETileGenType.CorridorFloor;
+                    }
+
+                    TryMarkAsCorridorWall(coord + IntVector2.Up);
+                    TryMarkAsCorridorWall(coord + IntVector2.Up + IntVector2.Left);
+                    TryMarkAsCorridorWall(coord + IntVector2.Up + IntVector2.Right);
+                    TryMarkAsCorridorWall(coord + IntVector2.Down);
+                    TryMarkAsCorridorWall(coord + IntVector2.Down + IntVector2.Left);
+                    TryMarkAsCorridorWall(coord + IntVector2.Down + IntVector2.Right);
+                    TryMarkAsCorridorWall(coord + IntVector2.Left);
+                    TryMarkAsCorridorWall(coord + IntVector2.Right);
+                }
+
+                void TryMarkAsCorridorWall(IntVector2 coord)
+                {
+                    ETileGenType currentTile = (ETileGenType)tileGenTypes[coord.x, coord.y];
+                    if (currentTile == ETileGenType.Void)
+                    {
+                        tileGenTypes[coord.x, coord.y] = (int)ETileGenType.CorridorWall;
+                    }
+                }
+
+                for (int k = 0; k < path.Length; k++)
+                {
+                    TryMarkAsCorridorFloor(path[k]);
+                }
+            }
+
+            // TODO: remove invalid doors
 
             // convert from gen types to actual tile types
             for (int x = 0; x < tileGenTypes.GetLength(0); x++)
