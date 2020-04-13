@@ -78,22 +78,6 @@ namespace Tofunaut.Deeepr.Game
             return _tiles[x, y];
         }
 
-        protected override void Build() { }
-
-        public static Floor TestFloor()
-        {
-            // this will be rotated 90 counter clockwise
-            int[,] tileData = { {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                            { 1, 0, 1, 0, 0, 0, 0, 0, 0, 1 },
-                            { 1, 0, 0, 0, 0, 0, 0, 1, 0, 1 },
-                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-                            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },};
-
-            return new Floor(tileData, 0);
-        }
+        protected override void Build()  { }
     }
 }

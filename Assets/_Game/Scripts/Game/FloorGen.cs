@@ -74,7 +74,7 @@ namespace Tofunaut.Deeepr.Game
 
         private const int DefaultGen_RoomMinBufferSize = 8;
         private const int DefaultGen_RoomMaxBufferSize = 18;
-        private const int DefaultGen_CooridorErosionSteps = 10;
+        private const int DefaultGen_CooridorErosionSteps = 4;
         private struct RoomGenData
         {
             public IntVector2Rect rect;
@@ -84,7 +84,6 @@ namespace Tofunaut.Deeepr.Game
         {
             List<IntVector2Rect> rooms = new List<IntVector2Rect>();
 
-            // Step 1: determine the tiles types
             int[,] tileGenTypes = new int[floorSize.x, floorSize.y];
 
             IntVector2Rect CreateRoom()
@@ -98,7 +97,7 @@ namespace Tofunaut.Deeepr.Game
                 return new IntVector2Rect(min, max);
             }
 
-            // randomly try to populate the floor with non-overlapping
+            // 1) randomly try to populate the floor with non-overlapping
             for (int i = 0; i < 1000; i++)
             {
                 IntVector2Rect room = CreateRoom();
@@ -121,6 +120,7 @@ namespace Tofunaut.Deeepr.Game
                 rooms.Add(room);
             }
 
+            // 2) place doors around rooms
             List<RoomGenData> roomGenDatas = new List<RoomGenData>();
             foreach (IntVector2Rect room in rooms)
             {
@@ -195,7 +195,7 @@ namespace Tofunaut.Deeepr.Game
                 roomGenDatas.Add(roomGenData);
             }
 
-            // now place the LadderUp tile
+            // 3) now place the LadderUp tile
             List<IntVector2> usefulCoords = new List<IntVector2>();
             for (int x = 0; x < tileGenTypes.GetLength(0); x++)
             {
@@ -212,13 +212,13 @@ namespace Tofunaut.Deeepr.Game
             IntVector2 ladderUpCoord = usefulCoords[random.Next(0, usefulCoords.Count)];
             tileGenTypes[ladderUpCoord.x, ladderUpCoord.y] = (int)ETileGenType.LadderUp;
 
-            // now place the LadderDown tile
+            // 4) now place the LadderDown tile
             usefulCoords.RemoveAll((IntVector2 x) => { return (x - ladderUpCoord).ManhattanDistance < 3; });
             IntVector2 ladderDownCoord = usefulCoords[random.Next(0, usefulCoords.Count)];
 
             tileGenTypes[ladderDownCoord.x, ladderDownCoord.y] = (int)ETileGenType.LadderDown;
 
-            // build all the cooridors
+            // 5) build all the cooridors
             usefulCoords.Clear(); // now use usefulCoords for cooridor tiles
             for (int i = 0; i < roomGenDatas.Count - 1; i++)
             {
@@ -279,7 +279,7 @@ namespace Tofunaut.Deeepr.Game
                 }
             }
 
-            // erode cooridor walls to provide more walking space
+            // 5) erode cooridor walls to provide more walking space
             List<IntVector2> wallsToRemove = new List<IntVector2>();
             for (int i = 0; i < DefaultGen_CooridorErosionSteps; i++)
             {
@@ -340,7 +340,7 @@ namespace Tofunaut.Deeepr.Game
                 wallsToRemove.Clear();
             }
 
-            // remove invalid doors
+            // 6) remove invalid doors
             foreach (RoomGenData roomGenData in roomGenDatas)
             {
                 foreach (IntVector2 coord in roomGenData.doorTiles)
@@ -372,8 +372,7 @@ namespace Tofunaut.Deeepr.Game
                 }
             }
 
-
-            // convert from gen types to actual tile types
+            // 7 convert from gen types to actual tile types
             for (int x = 0; x < tileGenTypes.GetLength(0); x++)
             {
                 for (int y = 0; y < tileGenTypes.GetLength(1); y++)
@@ -382,8 +381,9 @@ namespace Tofunaut.Deeepr.Game
                 }
             }
 
-            // Step 2: populate the tiles with items, actors, etc.
             Floor toReturn = new Floor(tileGenTypes, level);
+
+            // todo: add spawns, random npcs, items, etc.
 
             return toReturn;
         }
