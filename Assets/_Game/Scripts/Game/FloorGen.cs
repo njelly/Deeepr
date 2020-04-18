@@ -402,6 +402,9 @@ namespace Tofunaut.Deeepr.Game
                     return Tile.EType.LadderDown;
                 case ETileGenType.Door:
                     return Tile.EType.Door;
+                case ETileGenType.CorridorFloor:
+                case ETileGenType.RoomFloor:
+                    return Tile.EType.Floor;
                 default:
                     return Tile.EType.Empty;
             }

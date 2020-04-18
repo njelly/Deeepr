@@ -1,0 +1,1127 @@
+fileFormatVersion: 2
+guid: c348af2cf7eb4f24a837bb1c94b70481
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9009057838471019773
+    second: sprite_atlas_16_0
+  - first:
+      213: -2191910202337889401
+    second: sprite_atlas_16_1
+  - first:
+      213: -7451760187828148367
+    second: sprite_atlas_16_2
+  - first:
+      213: -1816304938624379563
+    second: sprite_atlas_16_3
+  - first:
+      213: 8845707894107314949
+    second: sprite_atlas_16_4
+  - first:
+      213: -3459160664392884747
+    second: sprite_atlas_16_5
+  - first:
+      213: 8072707789769202159
+    second: sprite_atlas_16_6
+  - first:
+      213: -5130991830505695271
+    second: sprite_atlas_16_7
+  - first:
+      213: -1159706715157989112
+    second: sprite_atlas_16_8
+  - first:
+      213: -8522672276791289897
+    second: sprite_atlas_16_9
+  - first:
+      213: -6445184284654540377
+    second: sprite_atlas_16_10
+  - first:
+      213: 862073252500322311
+    second: sprite_atlas_16_11
+  - first:
+      213: 6250777417643961098
+    second: sprite_atlas_16_12
+  - first:
+      213: -749589842719765013
+    second: sprite_atlas_16_13
+  - first:
+      213: 4450346113477774360
+    second: sprite_atlas_16_14
+  - first:
+      213: 1513979089039558787
+    second: sprite_atlas_16_15
+  - first:
+      213: -644484811848835489
+    second: sprite_atlas_16_16
+  - first:
+      213: 5632451216652570705
+    second: sprite_atlas_16_17
+  - first:
+      213: 1715033454037487887
+    second: sprite_atlas_16_18
+  - first:
+      213: -709363125776085772
+    second: sprite_atlas_16_19
+  - first:
+      213: 8543443853614514525
+    second: sprite_atlas_16_20
+  - first:
+      213: -5020743912962671506
+    second: sprite_atlas_16_21
+  - first:
+      213: 6766802843395039526
+    second: sprite_atlas_16_22
+  - first:
+      213: 8776758355744652078
+    second: sprite_atlas_16_23
+  - first:
+      213: -3756673307137653031
+    second: sprite_atlas_16_24
+  - first:
+      213: -1515143279182432691
+    second: sprite_atlas_16_25
+  - first:
+      213: 9036658488358525812
+    second: sprite_atlas_16_26
+  - first:
+      213: 7006889916342696506
+    second: sprite_atlas_16_27
+  - first:
+      213: 7791597151673904271
+    second: sprite_atlas_16_0
+  - first:
+      213: -8739006155269285741
+    second: sprite_atlas_16_1
+  - first:
+      213: -7908105793547543686
+    second: sprite_atlas_16_2
+  - first:
+      213: 3634360709809592304
+    second: sprite_atlas_16_3
+  - first:
+      213: -7594021555084299415
+    second: sprite_atlas_16_4
+  - first:
+      213: 2028334096276808055
+    second: sprite_atlas_16_5
+  - first:
+      213: -229659522307466133
+    second: sprite_atlas_16_6
+  - first:
+      213: 7396111514458094077
+    second: sprite_atlas_16_7
+  - first:
+      213: -2470376079654346208
+    second: sprite_atlas_16_8
+  - first:
+      213: -7155546387319840823
+    second: sprite_atlas_16_9
+  - first:
+      213: 2464642715511737295
+    second: sprite_atlas_16_10
+  - first:
+      213: 5863760817474616236
+    second: sprite_atlas_16_11
+  - first:
+      213: -5351136889051476305
+    second: sprite_atlas_16_12
+  - first:
+      213: 1880251678198858686
+    second: sprite_atlas_16_13
+  - first:
+      213: -270746956728418793
+    second: sprite_atlas_16_14
+  - first:
+      213: 8776127940017599696
+    second: sprite_atlas_16_15
+  - first:
+      213: 2573427626799959534
+    second: sprite_atlas_16_16
+  - first:
+      213: 5420052878803367096
+    second: sprite_atlas_16_17
+  - first:
+      213: 1627538616062231672
+    second: sprite_atlas_16_18
+  - first:
+      213: 2084186783648494830
+    second: sprite_atlas_16_19
+  - first:
+      213: 2425462644395511333
+    second: sprite_atlas_16_20
+  - first:
+      213: 2022775385848979999
+    second: sprite_atlas_16_21
+  - first:
+      213: -9154509950541684243
+    second: sprite_atlas_16_22
+  - first:
+      213: -8352132829778315717
+    second: sprite_atlas_16_23
+  - first:
+      213: -3981426016928272082
+    second: sprite_atlas_16_24
+  - first:
+      213: -642762762497632194
+    second: sprite_atlas_16_25
+  - first:
+      213: -1761960639199839261
+    second: sprite_atlas_16_26
+  - first:
+      213: -844852411336481226
+    second: sprite_atlas_16_27
+  - first:
+      213: -3343576622710216780
+    second: sprite_atlas_16_28
+  - first:
+      213: -887319139646814180
+    second: sprite_atlas_16_29
+  - first:
+      213: 1286576473586244823
+    second: sprite_atlas_16_30
+  - first:
+      213: -3238629374805662600
+    second: sprite_atlas_16_31
+  - first:
+      213: 2736355625914042575
+    second: sprite_atlas_16_32
+  - first:
+      213: -3565352050774506132
+    second: sprite_atlas_16_33
+  - first:
+      213: -6660420018196396354
+    second: sprite_atlas_16_34
+  - first:
+      213: -6987213309666776105
+    second: sprite_atlas_16_35
+  - first:
+      213: -3316258266330775833
+    second: sprite_atlas_16_36
+  - first:
+      213: 7953121556100515083
+    second: sprite_atlas_16_37
+  - first:
+      213: 1910780383644345737
+    second: sprite_atlas_16_38
+  - first:
+      213: -4262325648100230656
+    second: sprite_atlas_16_39
+  - first:
+      213: 5188554889978393970
+    second: sprite_atlas_16_40
+  - first:
+      213: -7439842172712506596
+    second: sprite_atlas_16_41
+  - first:
+      213: -6741653308924155063
+    second: sprite_atlas_16_42
+  - first:
+      213: 8789933675266694118
+    second: sprite_atlas_16_43
+  - first:
+      213: -5377669959102615628
+    second: sprite_atlas_16_44
+  - first:
+      213: -5754846109409118272
+    second: sprite_atlas_16_45
+  - first:
+      213: 9172891700875941028
+    second: sprite_atlas_16_46
+  - first:
+      213: -4522218093397349559
+    second: sprite_atlas_16_47
+  - first:
+      213: 1824844833729214929
+    second: sprite_atlas_16_48
+  - first:
+      213: 5928413872091574934
+    second: sprite_atlas_16_49
+  - first:
+      213: -1416059998140575798
+    second: sprite_atlas_16_50
+  - first:
+      213: -9181004275655269287
+    second: sprite_atlas_16_51
+  - first:
+      213: -4400029078686088704
+    second: sprite_atlas_16_52
+  - first:
+      213: -2896441308191875210
+    second: sprite_atlas_16_53
+  - first:
+      213: -7077251458069228532
+    second: sprite_atlas_16_54
+  - first:
+      213: 7739787755638866863
+    second: sprite_atlas_16_55
+  - first:
+      213: -6634651279505502319
+    second: sprite_atlas_16_56
+  - first:
+      213: 4671636031362279141
+    second: sprite_atlas_16_57
+  - first:
+      213: -4327739123114901816
+    second: sprite_atlas_16_58
+  - first:
+      213: -6391148226867063414
+    second: sprite_atlas_16_59
+  - first:
+      213: -7262726534047862890
+    second: sprite_atlas_16_60
+  - first:
+      213: 3082589895487051940
+    second: sprite_atlas_16_61
+  - first:
+      213: 4883862102694383259
+    second: sprite_atlas_16_62
+  - first:
+      213: 486290714109558248
+    second: sprite_atlas_16_63
+  - first:
+      213: -5159951087938532308
+    second: sprite_atlas_16_64
+  - first:
+      213: -5535616617330790502
+    second: sprite_atlas_16_65
+  - first:
+      213: 1138157555621910442
+    second: sprite_atlas_16_66
+  - first:
+      213: 5531356823415609558
+    second: sprite_atlas_16_67
+  - first:
+      213: -3122482228450397215
+    second: sprite_atlas_16_68
+  - first:
+      213: 936078021156583220
+    second: sprite_atlas_16_69
+  - first:
+      213: 6089767901218503889
+    second: sprite_atlas_16_70
+  - first:
+      213: 3634674284203603064
+    second: sprite_atlas_16_71
+  - first:
+      213: -4941766188044195949
+    second: sprite_atlas_16_72
+  - first:
+      213: -391957300291219285
+    second: sprite_atlas_16_73
+  - first:
+      213: 7625912435075285110
+    second: sprite_atlas_16_74
+  - first:
+      213: -7986055989788428237
+    second: sprite_atlas_16_75
+  - first:
+      213: 4988639362958076389
+    second: sprite_atlas_16_76
+  - first:
+      213: 8183703904322422079
+    second: sprite_atlas_16_77
+  - first:
+      213: 752846811935487662
+    second: sprite_atlas_16_78
+  - first:
+      213: 6658292880239689072
+    second: sprite_atlas_16_79
+  - first:
+      213: 157380399174326833
+    second: sprite_atlas_16_80
+  - first:
+      213: 2859337391297497932
+    second: sprite_atlas_16_81
+  - first:
+      213: -6787947708382476422
+    second: sprite_atlas_16_82
+  - first:
+      213: 3795380778760471345
+    second: sprite_atlas_16_83
+  - first:
+      213: -6863917554158832711
+    second: sprite_atlas_16_84
+  - first:
+      213: -8987242173927613814
+    second: sprite_atlas_16_85
+  - first:
+      213: 4343547017577001485
+    second: sprite_atlas_16_86
+  - first:
+      213: -8618608808914270654
+    second: sprite_atlas_16_87
+  - first:
+      213: -813744797776920240
+    second: sprite_atlas_16_88
+  - first:
+      213: 5039987100703358182
+    second: sprite_atlas_16_89
+  - first:
+      213: -8990236630916837047
+    second: sprite_atlas_16_90
+  - first:
+      213: 9015913164814292375
+    second: sprite_atlas_16_91
+  - first:
+      213: -1250264117385885443
+    second: sprite_atlas_16_92
+  - first:
+      213: 9149502885775479653
+    second: sprite_atlas_16_93
+  - first:
+      213: 9079962199365885922
+    second: sprite_atlas_16_94
+  - first:
+      213: 5522251963055900313
+    second: sprite_atlas_16_95
+  - first:
+      213: 4529255856608299574
+    second: sprite_atlas_16_96
+  - first:
+      213: -5644589099353171199
+    second: sprite_atlas_16_97
+  - first:
+      213: -1648252293428241557
+    second: sprite_atlas_16_98
+  - first:
+      213: -4878865078625237744
+    second: sprite_atlas_16_99
+  - first:
+      213: -4519454665848923655
+    second: sprite_atlas_16_100
+  - first:
+      213: -7881957718828642891
+    second: sprite_atlas_16_101
+  - first:
+      213: 1807753918651543147
+    second: sprite_atlas_16_102
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_atlas_16_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8ce77ae350512c60800000000000000
+      internalID: 7791597151673904271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398d839f330d8b680800000000000000
+      internalID: -8739006155269285741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7bd3610ea3c04290800000000000000
+      internalID: -7908105793547543686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f756d55fc7df6230800000000000000
+      internalID: 3634360709809592304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9637a8861ad9c9690800000000000000
+      internalID: -7594021555084299415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771646e2d17162c10800000000000000
+      internalID: 2028334096276808055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6cd39991e510dcf0800000000000000
+      internalID: -229659522307466133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df973727c3444a660800000000000000
+      internalID: 7396111514458094077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 022a49e4b0677bdd0800000000000000
+      internalID: -2470376079654346208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf98f1f87462bc90800000000000000
+      internalID: -7155546387319840823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcbc454dd7b243220800000000000000
+      internalID: 2464642715511737295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_11
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cabbd6d5563406150800000000000000
+      internalID: 5863760817474616236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae0997d951fcb5b0800000000000000
+      internalID: -5351136889051476305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_13
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3006770fef71a10800000000000000
+      internalID: 1880251678198858686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_14
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e3f2cc31d1e3cf0800000000000000
+      internalID: -270746956728418793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_15
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d431201dd11bc970800000000000000
+      internalID: 8776127940017599696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eed869ebac6a6b320800000000000000
+      internalID: 2573427626799959534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_17
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b478e86065e73b40800000000000000
+      internalID: 5420052878803367096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_18
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 874ce9c8fbd269610800000000000000
+      internalID: 1627538616062231672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_19
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee4bee456d48cec10800000000000000
+      internalID: 2084186783648494830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_20
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e8c27ac69f8a120800000000000000
+      internalID: 2425462644395511333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_21
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12aeed0f77521c10800000000000000
+      internalID: 2022775385848979999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_22
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de12f21e3b5a4f080800000000000000
+      internalID: -9154509950541684243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_23
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 1008
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b367f2c5173471c80800000000000000
+      internalID: -8352132829778315717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e21fd71d1222fb8c0800000000000000
+      internalID: -3981426016928272082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_25
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e38da7a4ca27417f0800000000000000
+      internalID: -642762762497632194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_26
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebf54842224c87e0800000000000000
+      internalID: -1761960639199839261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63628a6453b7644f0800000000000000
+      internalID: -844852411336481226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_28
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7ae04d6ca3991d0800000000000000
+      internalID: -3343576622710216780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_atlas_16_29
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 992
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1842f691fb9fa3f0800000000000000
+      internalID: -887319139646814180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

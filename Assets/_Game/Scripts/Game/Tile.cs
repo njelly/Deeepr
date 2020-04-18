@@ -15,11 +15,15 @@ namespace Tofunaut.Deeepr.Game
             LadderUp,
             LadderDown,
             Door,
+            Floor,
         }
+
+        public TileView TileView => _tileView;
 
         public readonly IntVector2 coord;
         public readonly Floor floor;
 
+        public virtual EType Type => EType.Empty;
         public virtual Collision.ELayer SolidLayer => _defaultSolidLayer;
         public IReadOnlyCollection<Actor> Occupants => new List<Actor>(_occupants).AsReadOnly();
 
@@ -27,7 +31,7 @@ namespace Tofunaut.Deeepr.Game
         protected Collision.ELayer _defaultSolidLayer;
         protected HashSet<Actor> _occupants;
 
-        private TileView _instantiatedView;
+        protected TileView _tileView;
 
         protected Tile(Floor floor, IntVector2 coord) : base($"Tile {coord}")
         {
@@ -41,21 +45,7 @@ namespace Tofunaut.Deeepr.Game
             _occupants = new HashSet<Actor>();
         }
 
-        protected override void Build()
-        {
-            if(!string.IsNullOrEmpty(ViewPath))
-            {
-                AppManager.AssetManager.Load(ViewPath, (bool succesful, GameObject payload) =>
-                {
-                    if(succesful)
-                    {
-                        _instantiatedView = Object.Instantiate(payload).GetComponent<TileView>();
-                        _instantiatedView.Initialize(this);
-                        _instantiatedView.transform.SetParent(Transform, false);
-                    }
-                });
-            }
-        }
+        protected override void Build() { }
 
         public static Tile Create(Floor floor, IntVector2 coord, EType type)
         {
@@ -71,6 +61,8 @@ namespace Tofunaut.Deeepr.Game
                     return new LadderDownTile(floor, coord);
                 case EType.Door:
                     return new DoorTile(floor, coord);
+                case EType.Floor:
+                    return new FloorTile(floor, coord);
                 default:
                     Debug.LogError($"unhandled tile type {type}, returning null");
                     return null;
@@ -115,37 +107,60 @@ namespace Tofunaut.Deeepr.Game
 
         public virtual void InteractWith(Actor interactor) { }
     }
-
     public class WallTile : Tile
     {
+        public override EType Type => EType.Wall;
+
         protected override string ViewPath => "WallView";
 
         public WallTile(Floor floor, IntVector2 coord) : base(floor, coord) 
         {
             _defaultSolidLayer = Collision.ELayer.All;
+            _tileView = new WallTileView(this);
+
+            AddChild(_tileView);
         }
     }
-
     public class LadderUpTile : Tile
     {
+        public override EType Type => EType.LadderUp;
+
         protected override string ViewPath => "LadderUpView";
 
         public LadderUpTile(Floor floor, IntVector2 coord) : base(floor, coord)
         {
             _defaultSolidLayer = Collision.ELayer.Ground;
         }
+
+        public override void InteractWith(Actor interactor)
+        {
+            base.InteractWith(interactor);
+
+            GameManager.GoToUpperFloor();
+        }
     }
     public class LadderDownTile : Tile
     {
+        public override EType Type => EType.LadderDown;
+
         protected override string ViewPath => "LadderDownView";
 
         public LadderDownTile(Floor floor, IntVector2 coord) : base(floor, coord)
         {
             _defaultSolidLayer = Collision.ELayer.Ground;
         }
+
+        public override void InteractWith(Actor interactor)
+        {
+            base.InteractWith(interactor);
+
+            GameManager.GoToLowerFloor();
+        }
     }
     public class DoorTile : Tile
     {
+        public override EType Type => EType.Door;
+
         protected override string ViewPath => "DoorView";
 
         public bool IsClosed { get; private set; }
@@ -161,6 +176,17 @@ namespace Tofunaut.Deeepr.Game
         public override void InteractWith(Actor interactor)
         {
             IsClosed = !IsClosed;
+        }
+    }
+    public class FloorTile : Tile
+    {
+        public override EType Type => EType.Floor;
+
+        protected override string ViewPath => "FloorView";
+
+        public FloorTile(Floor floor, IntVector2 coord) : base (floor, coord)
+        {
+            _defaultSolidLayer = Collision.ELayer.Ground;
         }
     }
 }

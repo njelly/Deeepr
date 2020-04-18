@@ -20,6 +20,7 @@ namespace Tofunaut.Deeepr
             DarkBrown,
             Brown,
             Blue,
+            ActuallyBlack,
         }
 
         public enum EAlpha
@@ -54,6 +55,9 @@ namespace Tofunaut.Deeepr
             Color toReturn;
             switch (color)
             {
+                case EColor.ActuallyBlack:
+                    toReturn = Color.black;
+                    break;
                 case EColor.Black:
                     toReturn = _black;
                     break;

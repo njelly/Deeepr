@@ -10,15 +10,16 @@ namespace Tofunaut.Deeepr.Game
         public const string GenSeedKey = "gen_seed";
 
         public static GameCamera Camera { get; private set; }
+        public static bool IsGenerating => _instance._isGenerating;
 
         public Floor CurrentFloor => _floors[_currentLevel];
-        public bool IsGenerating { get; private set; }
 
         private List<Actor> _actors;
         private List<Floor> _floors;
         private Actor _playerActor;
         private int _currentLevel;
         private int _seed;
+        private bool _isGenerating;
 
         private void Start()
         {
@@ -42,17 +43,17 @@ namespace Tofunaut.Deeepr.Game
 
         private void Update()
         {
-            if(!IsGenerating)
-            {
-                if (Input.GetKeyDown(KeyCode.N))
-                {
-                    EnterLevel(_currentLevel + 1);
-                }
-                if (_currentLevel > 0 && Input.GetKeyDown(KeyCode.B))
-                {
-                    EnterLevel(_currentLevel - 1);
-                }
-            }
+            //if(!IsGenerating)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.N))
+            //    {
+            //        EnterLevel(_currentLevel + 1);
+            //    }
+            //    if (_currentLevel > 0 && Input.GetKeyDown(KeyCode.B))
+            //    {
+            //        EnterLevel(_currentLevel - 1);
+            //    }
+            //}
         }
 
         private void EnterLevel(int level)
@@ -93,12 +94,12 @@ namespace Tofunaut.Deeepr.Game
             }
             else
             {
-                IsGenerating = true;
+                _isGenerating = true;
 
                 // the floor doesn't exist, so generate it
                 FloorGen.GenerateFloor(_seed, level, (Floor payload) =>
                 {
-                    IsGenerating = false;
+                    _isGenerating = false;
 
                     _floors.Add(payload);
                     payload.Render(transform);
@@ -117,6 +118,29 @@ namespace Tofunaut.Deeepr.Game
             actor.Render(transform);
 
             return actor;
+        }
+
+        public static void GoToUpperFloor()
+        {
+            if(IsGenerating)
+            {
+                return;
+            }
+
+            if (_instance._currentLevel > 0)
+            {
+                _instance.EnterLevel(_instance._currentLevel - 1);
+            }
+        }
+
+        public static void GoToLowerFloor()
+        {
+            if (IsGenerating)
+            {
+                return;
+            }
+
+            _instance.EnterLevel(_instance._currentLevel + 1);
         }
     }
 }

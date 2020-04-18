@@ -50,6 +50,16 @@ namespace Tofunaut.Deeepr
         {
             AssetManager = new AssetManager();
 
+            Game.TileView.PreloadSpriteAtlas(() => 
+            {
+            //    for (int i = 0; i < Game.TileView.NumSprites; i++)
+            //    {
+            //        Game.TestTileView testTileView = new Game.TestTileView(null, i);
+            //        testTileView.LocalPosition = Vector3.right * i;
+            //        testTileView.Render(transform);
+            //    }
+            });
+
             // TODO: load necessary assets like fonts and things here
         }
 

@@ -41,6 +41,14 @@ MonoBehaviour:
     m_Address: WallView
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b0090d4d0e06af04d818c4fce36147ae
+    m_Address: FloorView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c348af2cf7eb4f24a837bb1c94b70481
+    m_Address: sprite_atlas_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7f2a98d6a86b0c84c89a9606cf7e617f, type: 2}
   m_SchemaSet:

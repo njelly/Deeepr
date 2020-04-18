@@ -78,6 +78,24 @@ namespace Tofunaut.Deeepr.Game
             return _tiles[x, y];
         }
 
+        protected override void PreRender()
+        {
+            base.PreRender();
+
+            for (int x = 0; x < _tiles.GetLength(0); x++)
+            {
+                for(int y = 0; y < _tiles.GetLength(1); y++)
+                {
+                    if(_tiles[x, y].TileView == null)
+                    {
+                        continue;
+                    }
+
+                    _tiles[x, y].TileView.SetSprite();
+                }
+            }
+        }
+
         protected override void Build()  { }
     }
 }

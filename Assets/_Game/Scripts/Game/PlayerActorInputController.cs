@@ -22,6 +22,15 @@ namespace Tofunaut.Deeepr.Game
 
         private void PollInput()
         {
+            if(GameManager.IsGenerating)
+            {
+                _input.actionButton.wasDown = _input.actionButton;
+                _input.actionButton.timeDown = 0f;
+                _input.direction.SetDirection(IntVector2.Zero, Time.deltaTime);
+
+                return;
+            }
+
             _input.actionButton.wasDown = _input.actionButton;
             _input.actionButton.timeDown = Input.GetKey(KeyCode.Space) ? _input.actionButton.timeDown + Time.deltaTime : 0f;
 
